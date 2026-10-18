@@ -1,0 +1,38 @@
+
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <title>เซียมซี</title>
+</head>
+<body>
+    <h1>เซียมซีร้านกาแฟ</h1>
+    <button id="shake">เขย่า</button>
+    <p id="fortune"></p>
+
+    <script>
+        const fortunes = [
+            "โชคดีตลอดวัน",
+            "เจอเพื่อนเก่า",
+            "เงินทองไหลมา",
+            "ระวังกาแฟหก",
+            "มีคนแอบชอบ"
+        ];
+
+        // สุ่มคำทำนายเมื่อกดปุ่ม
+        document.getElementById("shake").addEventListener("click", function () {
+
+            // สุ่ม index ตั้งแต่ 0 ถึง 4
+            const index = Math.floor(Math.random() * fortunes.length);
+
+            // ดึงคำทำนายตาม index
+            const result = fortunes[index];
+
+            // แสดงเลขใบและคำทำนาย (เลขใบเริ่มที่ 1)
+            document.getElementById("fortune").textContent =
+                "ใบที่ " + (index + 1) + ": " + result;
+
+        });
+    </script>
+</body>
+</html>
