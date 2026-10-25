@@ -1,20 +1,18 @@
 <!DOCTYPE html>
 <html lang="th">
-<head>
-    <meta charset="UTF-8">
-    <title>แนะนำตัว</title>
-</head>
+<head><meta charset="UTF-8"><title>JS ตัวแรก</title></head>
 <body>
-    <h1>เปิด Console ดูผลนะ</h1>
+    <h1>ร้านกาแฟแมวเหมียว</h1>
 
     <script>
-        // เขียนโค้ดตรงนี้
-      	const name = "สมชาย"
-        let age = 25
-				console.log('ชื่อ: '+name)
-      	console.log('อายุ: '+age)
-      	age=age+1
-      	console.log('ปีหน้าอายุ: '+age)
+        const shop = "ร้านกาแฟแมวเหมียว";   // ไม่เปลี่ยน
+        let cups = 4;                        // เปลี่ยนได้
+
+        console.log("ร้าน: " + shop);
+        console.log("ขายไปแล้ว " + cups + " แก้ว");
+
+        cups = cups + 1;
+        console.log("ตอนนี้ " + cups + " แก้ว");   // ตอนนี้ 4 แก้ว
     </script>
 </body>
 </html>
