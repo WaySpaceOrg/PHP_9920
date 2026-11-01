@@ -1,194 +1,494 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="PHP_9920 - Web Development Learning Portal">
-    <title>PHP_9920 | Web Development Learning Portal</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="PHP_9920 Learning Portal - พื้นที่เรียนรู้ HTML, CSS และ JavaScript">
+  <meta name="theme-color" content="#fff1f7">
+  <title>PHP_9920 | Learning Portal</title>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700;800&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
 
-    <style>
-        body {
-            background: #f4f6fb;
-            font-family: Arial, sans-serif;
-            color: #243047;
-        }
-        .hero {
-            background: linear-gradient(135deg, #14213d, #1d4e89);
-            color: white;
-            padding: 55px 20px;
-            border-radius: 0 0 30px 30px;
-        }
-        .profile-img {
-            width: 90px;
-            height: 90px;
-            border-radius: 50%;
-            border: 4px solid white;
-            object-fit: cover;
-            background: white;
-        }
-        .page-card {
-            border: none;
-            border-radius: 14px;
-            transition: transform .2s, box-shadow .2s;
-            height: 100%;
-            box-shadow: 0 3px 12px rgba(0,0,0,.05);
-        }
-        .page-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0,0,0,.12);
-        }
-        .page-icon {
-            font-size: 28px;
-            color: #1d4e89;
-        }
-        .search-box {
-            max-width: 600px;
-            margin: auto;
-        }
-        footer {
-            color: #8490a5;
-            padding: 30px;
-        }
-    </style>
+  <style>
+    :root {
+      --pink: #f45b9a;
+      --pink-dark: #d9367b;
+      --pink-soft: #ffe2ef;
+      --blue: #70b8f5;
+      --blue-soft: #e4f3ff;
+      --purple: #aa8bea;
+      --purple-soft: #f0eaff;
+      --yellow: #ffd879;
+      --ink: #28304b;
+      --muted: #7c8299;
+      --paper: #fffafd;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      font-family: 'Kanit', sans-serif;
+      background:
+        radial-gradient(circle at 8% 15%, rgba(255,205,226,.55), transparent 25rem),
+        radial-gradient(circle at 92% 30%, rgba(215,231,255,.65), transparent 28rem),
+        #fffafd;
+    }
+    a { text-decoration: none; }
+    .topbar {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,.88);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid #f8d8e7;
+      box-shadow: 0 5px 22px rgba(91,65,101,.06);
+    }
+    .brand-mark {
+      width: 43px; height: 43px; display: grid; place-items: center;
+      border-radius: 15px; color: white; font-size: 1.35rem;
+      background: linear-gradient(145deg, #ff8cba, #a78bfa);
+      box-shadow: 0 6px 14px rgba(235,105,163,.25);
+    }
+    .brand-name { font-family: 'Nunito', sans-serif; font-weight: 900; line-height: 1; }
+    .brand-name span { color: var(--pink-dark); }
+    .nav-link {
+      color: #626982; font-weight: 500; border-radius: 999px;
+      padding: .55rem .95rem !important;
+    }
+    .nav-link:hover, .nav-link.active { color: var(--pink-dark); background: #fff0f6; }
+    .hero { padding: 48px 0 28px; }
+    .hero-panel {
+      position: relative; overflow: hidden; border-radius: 30px;
+      padding: clamp(25px, 4vw, 48px);
+      background: linear-gradient(112deg, #ffe0ed 0%, #fff0e7 48%, #e8eaff 100%);
+      border: 1px solid rgba(255,255,255,.9);
+      box-shadow: 0 18px 50px rgba(176,115,157,.13);
+    }
+    .hero-panel:before, .hero-panel:after {
+      content: ''; position: absolute; border-radius: 50%; pointer-events: none;
+      background: rgba(255,255,255,.35);
+    }
+    .hero-panel:before { width: 260px; height: 260px; right: 27%; top: -160px; }
+    .hero-panel:after { width: 190px; height: 190px; left: 35%; bottom: -145px; }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 7px 14px; border-radius: 999px; color: #c33b78;
+      background: rgba(255,255,255,.7); font-size: .9rem; font-weight: 500;
+    }
+    .hero-title {
+      font-family: 'Nunito', sans-serif; font-weight: 900;
+      font-size: clamp(2.5rem, 5.5vw, 4.6rem); line-height: .98;
+      letter-spacing: -2px; color: #263c78; margin: 18px 0 12px;
+    }
+    .hero-title span {
+      display: block; color: var(--pink-dark); font-style: italic;
+      letter-spacing: -1px;
+    }
+    .hero-copy { color: #626982; font-size: 1.08rem; max-width: 560px; }
+    .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 24px; }
+    .btn-pink {
+      color: white; border: 0; border-radius: 999px; padding: 11px 22px;
+      font-weight: 600; background: linear-gradient(110deg, #f65b9a, #d94caa);
+      box-shadow: 0 8px 18px rgba(229,76,145,.22);
+    }
+    .btn-pink:hover { color: white; transform: translateY(-2px); }
+    .btn-soft {
+      color: #a83e79; background: white; border: 1px solid #f7c9dd;
+      border-radius: 999px; padding: 10px 20px; font-weight: 500;
+    }
+    .hero-art {
+      min-height: 245px; display: grid; place-items: center; position: relative;
+    }
+    .hero-orbit {
+      width: min(270px, 70vw); aspect-ratio: 1; border-radius: 50%;
+      display: grid; place-items: center; position: relative;
+      background: linear-gradient(145deg, rgba(255,255,255,.85), rgba(255,255,255,.35));
+      border: 1px solid white; box-shadow: 0 20px 45px rgba(154,112,166,.13);
+    }
+    .hero-orbit .code-icon {
+      width: 155px; height: 155px; display: grid; place-items: center;
+      border-radius: 42px; color: white; font-size: 4rem;
+      background: linear-gradient(145deg, #7c9ff4, #b18ae9);
+      transform: rotate(-8deg); box-shadow: 0 18px 30px rgba(126,131,218,.28);
+    }
+    .float-chip {
+      position: absolute; padding: 8px 13px; border-radius: 14px;
+      background: white; color: #58618a; font-family: 'Nunito', sans-serif;
+      font-weight: 900; box-shadow: 0 8px 22px rgba(75,73,120,.12);
+    }
+    .chip-html { top: 13%; left: 0; color: #ed795c; transform: rotate(-9deg); }
+    .chip-css { top: 18%; right: -3%; color: #548fdc; transform: rotate(8deg); }
+    .chip-js { bottom: 12%; right: 4%; color: #b28b2e; transform: rotate(-7deg); }
+    .owner-card {
+      height: 100%; padding: 23px; border-radius: 25px;
+      background: rgba(255,255,255,.84); border: 1px solid white;
+      box-shadow: 0 12px 32px rgba(104,83,129,.10);
+    }
+    .owner-heading { color: #b83f7b; font-weight: 600; }
+    .owner-avatar {
+      width: 78px; height: 78px; object-fit: cover; border-radius: 50%;
+      border: 4px solid #ffe0ed; background: #fff0f6;
+    }
+    .owner-name { font-weight: 700; font-size: 1.15rem; }
+    .owner-role { color: var(--muted); font-size: .9rem; }
+    .owner-quote {
+      margin-top: 17px; padding: 11px; border-radius: 15px;
+      text-align: center; color: #b43c79; background: #fff0f6;
+      font-family: 'Nunito', sans-serif; font-weight: 900;
+    }
+    .search-wrap { margin: 8px auto 38px; max-width: 850px; }
+    .search-box {
+      display: flex; align-items: center; gap: 12px; padding: 8px 10px 8px 20px;
+      background: white; border: 1px solid #f3d6e5; border-radius: 999px;
+      box-shadow: 0 8px 24px rgba(140,93,128,.08);
+    }
+    .search-box i { color: #9c82b5; font-size: 1.2rem; }
+    .search-box input { border: 0; outline: 0; box-shadow: none !important; flex: 1; min-width: 0; }
+    .section-kicker { color: var(--pink-dark); font-size: .85rem; font-weight: 600; letter-spacing: .5px; }
+    .section-title { font-weight: 700; font-size: clamp(1.5rem, 3vw, 2rem); }
+    .lesson-card {
+      height: 100%; overflow: hidden; border-radius: 24px;
+      background: white; border: 1px solid rgba(255,255,255,.9);
+      box-shadow: 0 10px 28px rgba(72,72,110,.08);
+      transition: transform .22s ease, box-shadow .22s ease;
+    }
+    .lesson-card:hover { transform: translateY(-6px); box-shadow: 0 17px 34px rgba(72,72,110,.13); }
+    .lesson-head { padding: 20px 22px 17px; position: relative; }
+    .lesson-head.html { background: linear-gradient(120deg, #ffdce9, #fff0f5); }
+    .lesson-head.css { background: linear-gradient(120deg, #dceeff, #f0f7ff); }
+    .lesson-head.js { background: linear-gradient(120deg, #e7ddff, #f7f1ff); }
+    .lesson-number {
+      display: inline-block; padding: 5px 12px; border-radius: 10px;
+      color: white; font-family: 'Nunito', sans-serif; font-weight: 900;
+      font-size: .85rem; letter-spacing: .5px;
+    }
+    .html .lesson-number { background: #f05d9a; }
+    .css .lesson-number { background: #5a9ee5; }
+    .js .lesson-number { background: #9a79dc; }
+    .lesson-head h3 { margin: 12px 0 3px; font-size: 1.35rem; font-weight: 700; }
+    .lesson-head p { color: #777d95; margin: 0; font-size: .92rem; }
+    .lesson-body { padding: 18px 22px 22px; }
+    .lesson-meta { display: flex; align-items: center; gap: 12px; margin-bottom: 15px; }
+    .tech-icon {
+      width: 58px; height: 58px; display: grid; place-items: center;
+      border-radius: 18px; font-family: 'Nunito', sans-serif;
+      font-size: 1.8rem; font-weight: 900;
+    }
+    .tech-html { color: #e76a4e; background: #fff0e9; }
+    .tech-css { color: #438bdb; background: #eaf4ff; }
+    .tech-js { color: #a17a22; background: #fff6d9; }
+    .lesson-count { color: var(--muted); font-size: .85rem; }
+    .lesson-list { list-style: none; padding: 0; margin: 0 0 18px; }
+    .lesson-list li { display: flex; gap: 9px; align-items: flex-start; padding: 4px 0; color: #555e79; font-size: .95rem; }
+    .lesson-list i { color: #e879a9; margin-top: 3px; }
+    .css-list i { color: #68a9e9; }
+    .js-list i { color: #a18add; }
+    .lesson-link {
+      display: flex; justify-content: center; align-items: center; gap: 8px;
+      width: 100%; padding: 10px; border-radius: 999px; font-weight: 600;
+      transition: .2s ease;
+    }
+    .lesson-link.html-link { color: #c83d7c; background: #fff0f6; }
+    .lesson-link.css-link { color: #397fc5; background: #edf6ff; }
+    .lesson-link.js-link { color: #8062c2; background: #f3efff; }
+    .lesson-link:hover { filter: saturate(1.2); transform: translateY(-2px); }
+    .lesson-grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 10px; }
+    .exercise-link {
+      display: flex; align-items: center; gap: 9px; min-width: 0;
+      padding: 10px 11px; border-radius: 13px; color: #505873;
+      background: #fffafd; border: 1px solid #f3e8ef; font-size: .9rem;
+      transition: .18s ease;
+    }
+    .exercise-link:hover { color: var(--pink-dark); background: #fff0f6; border-color: #f4bfd6; }
+    .exercise-link .ex-no {
+      flex: 0 0 30px; height: 30px; display: grid; place-items: center;
+      border-radius: 10px; background: #ffe4ef; color: #c84983;
+      font-family: 'Nunito', sans-serif; font-weight: 900;
+    }
+    .exercise-link span:last-child { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .empty-state {
+      display: none; padding: 40px 20px; text-align: center; color: var(--muted);
+      background: white; border: 1px dashed #efcadd; border-radius: 22px;
+    }
+    .bottom-strip {
+      margin: 48px 0 24px; padding: 22px; border-radius: 22px;
+      background: linear-gradient(100deg, #fff0f6, #f1f5ff);
+      border: 1px solid white;
+    }
+    .feature-icon {
+      width: 42px; height: 42px; display: grid; place-items: center;
+      border-radius: 14px; color: #bf4b86; background: white; font-size: 1.2rem;
+    }
+    footer { padding: 25px 0 35px; color: #8b8da3; font-size: .9rem; }
+    footer a { color: #bd4a83; }
+    @media (max-width: 767px) {
+      .hero { padding-top: 25px; }
+      .hero-art { min-height: 210px; margin: 15px 0; }
+      .owner-card { margin-top: 8px; }
+      .lesson-grid { grid-template-columns: 1fr; }
+      .search-box { border-radius: 20px; }
+      .search-box .btn { padding: 9px 14px; }
+    }
+  </style>
 </head>
 
 <body>
-<header class="hero text-center">
-    <img class="profile-img mb-3"
-         src="https://github.com/WaySpaceOrg.png"
-         alt="WaySpaceOrg profile">
+  <nav class="navbar navbar-expand-lg topbar">
+    <div class="container py-1">
+      <a class="navbar-brand d-flex align-items-center gap-2" href="#home">
+        <span class="brand-mark"><i class="bi bi-mortarboard-fill"></i></span>
+        <span class="brand-name">PHP_9920 <span>Learning Portal</span></span>
+      </a>
+      <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-label="เปิดเมนู">
+        <i class="bi bi-list fs-2"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="mainNav">
+        <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1">
+          <li class="nav-item"><a class="nav-link active" href="#home"><i class="bi bi-house-heart me-1"></i>Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="#lesson1">Lesson 1</a></li>
+          <li class="nav-item"><a class="nav-link" href="#lesson2">Lesson 2</a></li>
+          <li class="nav-item"><a class="nav-link" href="#lesson3">Lesson 3</a></li>
+          <li class="nav-item ms-lg-2"><a class="btn btn-sm btn-soft" href="https://github.com/WaySpaceOrg/PHP_9920" target="_blank" rel="noopener noreferrer"><i class="bi bi-github me-1"></i> GitHub</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
 
-    <h2>WaySpaceOrg</h2>
-    <p class="mb-2">Web Development Learning</p>
+  <header class="hero" id="home">
+    <div class="container">
+      <div class="hero-panel">
+        <div class="row align-items-center g-4 position-relative">
+          <div class="col-lg-5">
+            <span class="eyebrow"><i class="bi bi-stars"></i> LEARN • PRACTICE • CREATE</span>
+            <h1 class="hero-title">PHP_9920 <span>Learning Portal</span></h1>
+            <p class="hero-copy">พื้นที่เรียนรู้การพัฒนาเว็บไซต์แบบสนุก ๆ เริ่มจากพื้นฐาน HTML ต่อด้วย CSS และ JavaScript พร้อมตัวอย่างให้ทดลองทำจริง</p>
+            <div class="hero-actions">
+              <a href="#lessons" class="btn btn-pink"><i class="bi bi-play-fill me-1"></i> เริ่มเรียนกันเลย</a>
+              <a href="https://github.com/WaySpaceOrg/PHP_9920" target="_blank" rel="noopener noreferrer" class="btn btn-soft"><i class="bi bi-github me-1"></i> ดู Repository</a>
+            </div>
+          </div>
 
-    <h1 class="fw-bold mt-4">PHP_9920</h1>
-    <p>Web Development Learning Portal</p>
+          <div class="col-lg-3">
+            <div class="hero-art" aria-hidden="true">
+              <div class="hero-orbit">
+                <span class="float-chip chip-html">HTML5</span>
+                <span class="float-chip chip-css">CSS3</span>
+                <span class="float-chip chip-js">JavaScript</span>
+                <div class="code-icon"><i class="bi bi-code-slash"></i></div>
+              </div>
+            </div>
+          </div>
 
-    <a href="https://github.com/WaySpaceOrg/PHP_9920"
-       target="_blank" rel="noopener noreferrer"
-       class="btn btn-light mt-2">
-        <i class="bi bi-github"></i> View GitHub Repository
-    </a>
+          <div class="col-lg-4">
+            <aside class="owner-card" id="about-owner">
+              <div class="owner-heading mb-3"><i class="bi bi-heart-fill me-2"></i>About Owner</div>
+              <div class="d-flex align-items-center gap-3">
+                <img class="owner-avatar" src="https://github.com/WaySpaceOrg.png" alt="WaySpaceOrg profile">
+                <div>
+                  <div class="owner-name">WaySpaceOrg</div>
+                  <div class="owner-role">Web Developer / Learning Creator</div>
+                </div>
+              </div>
+              <hr class="my-3" style="border-color:#f3d8e6">
+              <div class="small text-secondary d-grid gap-2">
+                <div><i class="bi bi-code-slash me-2 text-danger"></i>Web Development</div>
+                <div><i class="bi bi-book me-2 text-primary"></i>HTML • CSS • JavaScript</div>
+                <div><i class="bi bi-github me-2"></i><a class="text-decoration-none" href="https://github.com/WaySpaceOrg" target="_blank" rel="noopener noreferrer">github.com/WaySpaceOrg</a></div>
+              </div>
+              <div class="owner-quote">“Keep Learning, Keep Growing” ✨</div>
+            </aside>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
 
-    <a href="about.html" class="btn btn-outline-light mt-2 ms-2">
-        <i class="bi bi-person-circle"></i> เกี่ยวกับฉัน
-    </a>
-</header>
-
-<main class="container py-5">
-    <div class="text-center mb-4">
-        <h3 class="fw-bold">บทเรียนและแบบฝึกหัด</h3>
-        <p class="text-secondary">เลือกบทเรียนที่ต้องการเปิด หรือค้นหาจากชื่อไฟล์</p>
+  <main class="container pb-4" id="lessons">
+    <div class="search-wrap">
+      <label class="visually-hidden" for="lessonSearch">ค้นหาบทเรียน</label>
+      <div class="search-box">
+        <i class="bi bi-search"></i>
+        <input id="lessonSearch" type="search" placeholder="ค้นหาบทเรียน เช่น HTML, BMI, คาเฟ่แมวเหมียว..." autocomplete="off">
+        <button class="btn btn-pink px-4" id="clearSearch" type="button">ล้างค้นหา</button>
+      </div>
+      <div class="text-center small text-secondary mt-2" id="searchStatus" aria-live="polite">มีบทเรียนทั้งหมด 16 แบบฝึกหัด • เลือกหัวข้อที่สนใจได้เลย</div>
     </div>
 
-    <div class="search-box mb-4">
-        <input type="search" id="searchInput" class="form-control form-control-lg"
-               placeholder="ค้นหาบทเรียน เช่น BMI, ex1, Lesson2..."
-               aria-label="ค้นหาบทเรียน">
+    <div class="d-flex flex-wrap justify-content-between align-items-end mb-4">
+      <div>
+        <div class="section-kicker">YOUR CODING JOURNEY STARTS HERE</div>
+        <h2 class="section-title mb-1">เลือกบทเรียนที่อยากลอง <span class="text-danger">♡</span></h2>
+        <p class="text-secondary mb-0">ทุกบทเรียนเชื่อมไปยังไฟล์ HTML ใน Repository โดยตรง</p>
+      </div>
+      <span class="badge rounded-pill px-3 py-2 mt-2" style="background:#ffe5f0;color:#bd477f" id="totalBadge">16 Lessons</span>
     </div>
 
-    <div class="d-flex justify-content-between align-items-center mb-3">
-        <span class="text-secondary"><i class="bi bi-grid"></i> Available Pages</span>
-        <span class="badge bg-primary" id="pageCount">0 Pages</span>
+    <section class="row g-4" id="lessonSections">
+      <div class="col-lg-4 lesson-section" id="lesson1" data-lesson="1">
+        <article class="lesson-card">
+          <div class="lesson-head html">
+            <span class="lesson-number">LESSON 01</span>
+            <h3>พื้นฐาน HTML</h3>
+            <p>เริ่มต้นสร้างหน้าเว็บด้วยโครงสร้าง HTML</p>
+          </div>
+          <div class="lesson-body">
+            <div class="lesson-meta">
+              <div class="tech-icon tech-html">5</div>
+              <div><div class="fw-semibold">HTML Fundamentals</div><div class="lesson-count">4 แบบฝึกหัด</div></div>
+            </div>
+            <ul class="lesson-list">
+              <li><i class="bi bi-check-circle-fill"></i> รู้จักโครงสร้างหน้าเว็บ</li>
+              <li><i class="bi bi-check-circle-fill"></i> แสดงข้อความ รูปภาพ และลิงก์</li>
+              <li><i class="bi bi-check-circle-fill"></i> สร้างตารางและแบบฟอร์ม</li>
+            </ul>
+            <div class="lesson-grid">
+              <a class="exercise-link" href="Lesson1/ex1.html" data-search="ประวัติส่วนตัว profile html"><span class="ex-no">01</span><span>ประวัติส่วนตัว</span></a>
+              <a class="exercise-link" href="Lesson1/ex2.html" data-search="ร้านกาแฟแมวเหมียว รูปภาพ ลิงก์"><span class="ex-no">02</span><span>ร้านกาแฟแมวเหมียว</span></a>
+              <a class="exercise-link" href="Lesson1/ex3.html" data-search="ตารางข้อมูล table"><span class="ex-no">03</span><span>ตารางข้อมูล</span></a>
+              <a class="exercise-link" href="Lesson1/ex4.html" data-search="ฟอร์มเข้าสู่ระบบ form login"><span class="ex-no">04</span><span>ฟอร์มเข้าสู่ระบบ</span></a>
+            </div>
+            <a class="lesson-link html-link mt-3" href="Lesson1/ex1.html">เริ่ม Lesson 1 <i class="bi bi-arrow-right-circle-fill"></i></a>
+          </div>
+        </article>
+      </div>
+
+      <div class="col-lg-4 lesson-section" id="lesson2" data-lesson="2">
+        <article class="lesson-card">
+          <div class="lesson-head css">
+            <span class="lesson-number">LESSON 02</span>
+            <h3>ตกแต่งเว็บไซต์ด้วย CSS</h3>
+            <p>จัดวางองค์ประกอบและเพิ่มสีสันให้หน้าเว็บ</p>
+          </div>
+          <div class="lesson-body">
+            <div class="lesson-meta">
+              <div class="tech-icon tech-css">3</div>
+              <div><div class="fw-semibold">CSS & Page Layout</div><div class="lesson-count">6 แบบฝึกหัด</div></div>
+            </div>
+            <ul class="lesson-list css-list">
+              <li><i class="bi bi-check-circle-fill"></i> ปรับแต่งสี ตัวอักษร และระยะห่าง</li>
+              <li><i class="bi bi-check-circle-fill"></i> จัดวางเนื้อหาและส่วนประกอบ</li>
+              <li><i class="bi bi-check-circle-fill"></i> ฝึกสร้างหน้าเว็บหลายรูปแบบ</li>
+            </ul>
+            <div class="lesson-grid">
+              <a class="exercise-link" href="Lesson2/ex1.html" data-search="โปรไฟล์ของฉัน profile"><span class="ex-no">01</span><span>โปรไฟล์ของฉัน</span></a>
+              <a class="exercise-link" href="Lesson2/ex2.html" data-search="เมนูอาหาร menu"><span class="ex-no">02</span><span>เมนูอาหาร</span></a>
+              <a class="exercise-link" href="Lesson2/ex3.html" data-search="จองโต๊ะ booking"><span class="ex-no">03</span><span>จองโต๊ะ</span></a>
+              <a class="exercise-link" href="Lesson2/ex4.html" data-search="คาเฟ่แมวเหมียว cafe"><span class="ex-no">04</span><span>คาเฟ่แมวเหมียว</span></a>
+              <a class="exercise-link" href="Lesson2/ex5.html" data-search="โครงสร้างเว็บไซต์ sitemap"><span class="ex-no">05</span><span>โครงสร้างเว็บไซต์</span></a>
+              <a class="exercise-link" href="Lesson2/ex6.html" data-search="บ้านแมวเหมียว"><span class="ex-no">06</span><span>บ้านแมวเหมียว</span></a>
+            </div>
+            <a class="lesson-link css-link mt-3" href="Lesson2/ex1.html">เริ่ม Lesson 2 <i class="bi bi-arrow-right-circle-fill"></i></a>
+          </div>
+        </article>
+      </div>
+
+      <div class="col-lg-4 lesson-section" id="lesson3" data-lesson="3">
+        <article class="lesson-card">
+          <div class="lesson-head js">
+            <span class="lesson-number">LESSON 03</span>
+            <h3>เพิ่มชีวิตชีวาด้วย JavaScript</h3>
+            <p>ทำให้เว็บไซต์โต้ตอบกับผู้ใช้งานได้</p>
+          </div>
+          <div class="lesson-body">
+            <div class="lesson-meta">
+              <div class="tech-icon tech-js">JS</div>
+              <div><div class="fw-semibold">JavaScript Basics</div><div class="lesson-count">6 แบบฝึกหัด</div></div>
+            </div>
+            <ul class="lesson-list js-list">
+              <li><i class="bi bi-check-circle-fill"></i> เริ่มต้นเขียน JavaScript</li>
+              <li><i class="bi bi-check-circle-fill"></i> จัดการข้อความและ Event</li>
+              <li><i class="bi bi-check-circle-fill"></i> ทดลองทำ BMI และโหมดกลางคืน</li>
+            </ul>
+            <div class="lesson-grid">
+              <a class="exercise-link" href="Lesson3/ex1.html" data-search="javascript ตัวแรก"><span class="ex-no">01</span><span>JavaScript ตัวแรก</span></a>
+              <a class="exercise-link" href="Lesson3/ex2.html" data-search="เปลี่ยนข้อความ DOM"><span class="ex-no">02</span><span>เปลี่ยนข้อความ</span></a>
+              <a class="exercise-link" href="Lesson3/ex3.html" data-search="ระบบกดถูกใจ event"><span class="ex-no">03</span><span>ระบบกดถูกใจ</span></a>
+              <a class="exercise-link" href="Lesson3/ex4.html" data-search="เครื่องคำนวณ BMI"><span class="ex-no">04</span><span>เครื่องคำนวณ BMI</span></a>
+              <a class="exercise-link" href="Lesson3/ex5.html" data-search="เซียมซีร้านกาแฟ random"><span class="ex-no">05</span><span>เซียมซีร้านกาแฟ</span></a>
+              <a class="exercise-link" href="Lesson3/ex6.html" data-search="โหมดกลางคืน dark mode"><span class="ex-no">06</span><span>โหมดกลางคืน</span></a>
+            </div>
+            <a class="lesson-link js-link mt-3" href="Lesson3/ex1.html">เริ่ม Lesson 3 <i class="bi bi-arrow-right-circle-fill"></i></a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <div class="empty-state mt-4" id="emptyState">
+      <i class="bi bi-search-heart fs-1 d-block mb-2"></i>
+      <div class="fw-semibold">ไม่พบบทเรียนที่ค้นหา</div>
+      <div class="small">ลองค้นหาด้วยคำอื่น เช่น HTML, CSS, BMI หรือ JavaScript</div>
     </div>
 
-    <div class="row g-4" id="pageContainer"></div>
-</main>
+    <section class="bottom-strip">
+      <div class="row align-items-center g-3">
+        <div class="col-md-4 d-flex align-items-center gap-3">
+          <div class="feature-icon"><i class="bi bi-trophy-fill"></i></div>
+          <div><div class="fw-semibold">เรียนรู้ผ่านการลงมือทำ</div><div class="small text-secondary">ตัวอย่างและแบบฝึกหัด 16 รายการ</div></div>
+        </div>
+        <div class="col-md-4 d-flex align-items-center gap-3">
+          <div class="feature-icon"><i class="bi bi-code-square"></i></div>
+          <div><div class="fw-semibold">เทคโนโลยีที่ใช้</div><div class="small text-secondary">HTML5 • CSS3 • JavaScript • Bootstrap 5</div></div>
+        </div>
+        <div class="col-md-4 d-flex align-items-center gap-3">
+          <div class="feature-icon"><i class="bi bi-chat-heart-fill"></i></div>
+          <div><div class="fw-semibold">Practice makes progress!</div><div class="small text-secondary">ฝึกฝนทุกวัน แล้วจะเก่งขึ้นทีละนิด</div></div>
+        </div>
+      </div>
+    </section>
+  </main>
 
-<footer class="text-center">
-    <p class="mb-1">PHP_9920 Web Portal</p>
-    <small>Created by WaySpaceOrg | Powered by GitHub</small>
-</footer>
+  <footer>
+    <div class="container d-flex flex-column flex-md-row justify-content-between align-items-center gap-2">
+      <div>© <span id="year"></span> PHP_9920 Learning Portal <span class="text-danger">♥</span> Made for learning</div>
+      <a href="https://github.com/WaySpaceOrg/PHP_9920" target="_blank" rel="noopener noreferrer"><i class="bi bi-github me-1"></i> WaySpaceOrg / PHP_9920</a>
+    </div>
+  </footer>
 
-<script>
-    // รายการไฟล์ HTML ที่มีอยู่จริงใน Repository PHP_9920
-    // เพิ่มรายการใหม่ใน array นี้เมื่อมีแบบฝึกหัดเพิ่มเข้ามา
-    const pages = [
-        { path: "Lesson1/ex1.html", title: "ประวัติส่วนตัว", lesson: "Lesson 1 · HTML พื้นฐาน" },
-        { path: "Lesson1/ex2.html", title: "ร้านกาแฟแมวเหมียว", lesson: "Lesson 1 · รูปภาพและลิงก์" },
-        { path: "Lesson1/ex3.html", title: "ตารางข้อมูล", lesson: "Lesson 1 · HTML Table" },
-        { path: "Lesson1/ex4.html", title: "ฟอร์มเข้าสู่ระบบ", lesson: "Lesson 1 · HTML Form" },
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    const searchInput = document.getElementById('lessonSearch');
+    const clearButton = document.getElementById('clearSearch');
+    const statusText = document.getElementById('searchStatus');
+    const sections = [...document.querySelectorAll('.lesson-section')];
+    const emptyState = document.getElementById('emptyState');
+    const totalBadge = document.getElementById('totalBadge');
+    const allExercises = [...document.querySelectorAll('.exercise-link')];
 
-        { path: "Lesson2/ex1.html", title: "โปรไฟล์ของฉัน", lesson: "Lesson 2 · Semantic HTML" },
-        { path: "Lesson2/ex2.html", title: "เมนูอาหาร", lesson: "Lesson 2 · Table" },
-        { path: "Lesson2/ex3.html", title: "จองโต๊ะ", lesson: "Lesson 2 · Form" },
-        { path: "Lesson2/ex4.html", title: "คาเฟ่แมวเหมียว", lesson: "Lesson 2 · Navigation" },
-        { path: "Lesson2/ex5.html", title: "โครงสร้างเว็บไซต์", lesson: "Lesson 2 · Sitemap" },
-        { path: "Lesson2/ex6.html", title: "บ้านแมวเหมียว", lesson: "Lesson 2 · List และ Form" },
+    function filterLessons() {
+      const keyword = searchInput.value.trim().toLocaleLowerCase('th');
+      let visibleCount = 0;
 
-        { path: "Lesson3/ex1.html", title: "JavaScript ตัวแรก", lesson: "Lesson 3 · Variables" },
-        { path: "Lesson3/ex2.html", title: "เปลี่ยนข้อความด้วย JavaScript", lesson: "Lesson 3 · DOM" },
-        { path: "Lesson3/ex3.html", title: "ระบบกดถูกใจ", lesson: "Lesson 3 · Event" },
-        { path: "Lesson3/ex4.html", title: "เครื่องคำนวณ BMI", lesson: "Lesson 3 · Condition และ Calculation" },
-        { path: "Lesson3/ex5.html", title: "เซียมซีร้านกาแฟ", lesson: "Lesson 3 · Random" },
-        { path: "Lesson3/ex6.html", title: "โหมดกลางคืน", lesson: "Lesson 3 · Class และ DOM" }
-    ];
+      sections.forEach(section => {
+        const links = [...section.querySelectorAll('.exercise-link')];
+        let sectionCount = 0;
 
-    const pageContainer = document.getElementById("pageContainer");
-    const pageCount = document.getElementById("pageCount");
-    const searchInput = document.getElementById("searchInput");
+        links.forEach(link => {
+          const searchable = (link.textContent + ' ' + link.dataset.search + ' ' + link.getAttribute('href')).toLocaleLowerCase('th');
+          const matched = !keyword || searchable.includes(keyword);
+          link.hidden = !matched;
+          if (matched) sectionCount++;
+        });
 
-    function renderPages(items) {
-        pageCount.textContent = items.length + " Pages";
+        section.hidden = sectionCount === 0;
+        visibleCount += sectionCount;
+      });
 
-        if (items.length === 0) {
-            pageContainer.innerHTML = `
-                <div class="col-12 text-center text-secondary py-5">
-                    <i class="bi bi-search fs-1"></i>
-                    <p class="mt-3">ไม่พบบทเรียนที่ค้นหา</p>
-                </div>`;
-            return;
-        }
-
-        pageContainer.innerHTML = items.map(page => {
-            const href = page.path.split("/")
-                .map(part => encodeURIComponent(part))
-                .join("/");
-            const filename = page.path.split("/").pop();
-
-            return `
-                <div class="col-md-4 col-sm-6">
-                    <div class="card page-card">
-                        <div class="card-body p-4">
-                            <div class="page-icon mb-3">
-                                <i class="bi bi-filetype-html"></i>
-                            </div>
-                            <h5 class="fw-bold">${escapeHTML(page.title)}</h5>
-                            <p class="text-secondary small mb-1">${escapeHTML(page.lesson)}</p>
-                            <p class="text-secondary small">${escapeHTML(page.path)}</p>
-                            <a href="${href}" class="btn btn-outline-primary w-100">
-                                เปิดบทเรียน <i class="bi bi-arrow-up-right"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>`;
-        }).join("");
+      emptyState.style.display = visibleCount === 0 ? 'block' : 'none';
+      totalBadge.textContent = visibleCount + ' / ' + allExercises.length + ' แบบฝึกหัด';
+      statusText.textContent = keyword
+        ? 'พบ ' + visibleCount + ' แบบฝึกหัด จากคำค้นหา “' + searchInput.value.trim() + '”'
+        : 'มีบทเรียนทั้งหมด ' + allExercises.length + ' แบบฝึกหัด • เลือกหัวข้อที่สนใจได้เลย';
     }
 
-    function escapeHTML(value) {
-        return String(value).replace(/[&<>"']/g, char => ({
-            "&": "&amp;",
-            "<": "&lt;",
-            ">": "&gt;",
-            '"': "&quot;",
-            "'": "&#039;"
-        })[char]);
-    }
-
-    searchInput.addEventListener("input", function () {
-        const keyword = this.value.trim().toLocaleLowerCase("th");
-        const filtered = pages.filter(page =>
-            (page.title + " " + page.lesson + " " + page.path)
-                .toLocaleLowerCase("th")
-                .includes(keyword)
-        );
-        renderPages(filtered);
+    searchInput.addEventListener('input', filterLessons);
+    clearButton.addEventListener('click', () => {
+      searchInput.value = '';
+      filterLessons();
+      searchInput.focus();
     });
-
-    renderPages(pages);
-</script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
